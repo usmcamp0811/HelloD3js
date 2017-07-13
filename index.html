@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>D3 Tutorial</title>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-
+    <!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <body>
 
     <p>This is the begining of my journey to learning JavaScript with D3.</p>
-		<!--<a href="http://www.google.com", -->
-			<!--title="This is a link to Google">Google Website</a>-->
+		<a href="http://www.google.com",
+			title="This is a link to Google">Google Website</a>
 
 </body>
 
@@ -34,9 +34,13 @@ d3.select("body")
 
 
 
-var dataArray = [20, 40, 500, 90];
+var dataArray = [20, 40, 50, 90];
 var width = 500;
 var height = 500;
+
+var color = d3.scale.linear()
+    .domain([0, Math.max.apply(null, dataArray)])
+    .range(["red", "blue"])
 
 var widthScale = d3.scale.linear()
     .domain([0, Math.max.apply(null, dataArray)])
@@ -74,6 +78,7 @@ var bars = canvas.selectAll("rect")
     .data(dataArray)
     .enter()
     .append("rect")
+    .attr("fill", function(d) { return color(d)})
     .attr("width", function(d) { return widthScale(d); })
     .attr("height", 50)
     .attr("y", function(d, i) { return i * 100});
