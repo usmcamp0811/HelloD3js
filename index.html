@@ -19,43 +19,58 @@
 <script>
 
 // selects the paragraph and replaces the text.
-	d3.select("p").text("Hello World!");
+d3.select("p").text("Hello World!");
 
-	d3.select("a")
-		.attr("href", "https://d3js.org/")
-		.attr("title", "Google link was switched to D3js' page.")
-		.text("D3js Website");
+d3.select("a")
+    .attr("href", "https://d3js.org/")
+    .attr("title", "Google link was switched to D3js' page.")
+    .text("D3js Website");
 
 // selects the body and adds some text.
-	d3.select("body")
-	.append("p")
-	.style("color", "red")
-	.text("This text is being appended to the body of the *.html file with D3.");
+d3.select("body")
+.append("p")
+.style("color", "red")
+.text("This text is being appended to the body of the *.html file with D3.");
 
 // Appending a SVG canvas to the body.
-	var canvas = d3.select("body")
-			.append("svg")
-			.attr("width", 500)
-			.attr("height", 500);
+var canvas = d3.select("body")
+    .append("svg")
+    .attr("width", 500)
+    .attr("height", 900);
 
 
-	var circle = canvas.append("circle")
-			.attr("cx", 250)
-			.attr("cy", 250)
-			.attr("r", 50)
-			.attr("fill", "red");
+var circle = canvas.append("circle")
+    .attr("cx", 250)
+    .attr("cy", 250)
+    .attr("r", 50)
+    .attr("fill", "red");
 
-	var rect = canvas.append("rect")
-			.attr("width", 100)
-			.attr("height", 50);
+var rect = canvas.append("rect")
+    .attr("width", 100)
+    .attr("height", 100)
+    .attr("cx", 400)
+    .attr("cy", 350)
+    .attr("fill", "red");
 
-	var line = canvas.append("line")
-			.attr("x1", 0)
-			.attr("y1", 100)
-			.attr("x2", 400)
-			.attr("y2", 350)
-			.attr("stroke", "blue")
-			.attr("stroke-width", 8);
+var line = canvas.append("line")
+    .attr("x1", 0)
+    .attr("y1", 100)
+    .attr("x2", 400)
+    .attr("y2", 350)
+    .attr("stroke", "blue")
+    .attr("stroke-width", 8);
+
+// Data to be used for a histogram
+var dataArray = [20, 40, 55];
+
+var bars = canvas.selectAll("rect")
+    .data(dataArray)
+    .enter()
+        .append("rect")
+        .attr("width", function(d) { return d * 10;})
+        .attr("height", 50)
+        .attr("y", function(d, i) { return i * 100});
+
 
 </script>
 
