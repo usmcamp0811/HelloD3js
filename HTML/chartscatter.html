@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>D3 Bar Chart</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="../CSS/stylescatter.css">
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+
+</head>
+
+
+<div id ="container">
+    <div id ="header">
+        <h1>Demo Scatterplot</h1>
+    </div>
+    <div id ="sidebar">
+        X-axis:
+        <select id="xAxisVar" onchange="reDraw()" >
+            <option></option>
+            <option value="physicalstrength" selected="selected">physical strength</option>
+            <option value="fearfactor" >fear factor</option>
+            <option value="killingpower">killing power</option>
+            <option value="horrorrating">horror rating</option>
+        </select>
+        <br>
+        Y-axis:
+        <select id="yAxisVar" onchange="reDraw()">
+            <option></option>
+            <option value="physicalstrength">physical strength</option>
+            <option value="fearfactor" selected="selected">fear factor</option>
+            <option value="killingpower">killing power</option>
+            <option value="horrorrating">horror rating</option>
+        </select>
+    </div>
+    <div id ="content">
+        <!--if you were to do this with vanilla JS or SVG.. unsure exactly which but this is how without D3-->
+        <!--<svg height="400" width="650">-->
+            <!--<circle cx="100" cy="100" r="10"/>-->
+            <!--<circle cx="200" cy="250" r="10"/>-->
+            <!--<circle cx="300" cy="180" r="10"/>-->
+        <!--</svg>-->
+
+        <!--how to do this dynamically with D3-->
+        <svg height="400" width="650">
+        </svg>
+
+
+    </div>
+    <div id ="footer">
+    </div>
+</div>
+
+<body>
+
+
+</body>
+
+
+<script type="text/javascript" src="../JS/chartscatter.js"></script>
+</html>
