@@ -49,6 +49,8 @@ function addlist() {
 function showList(){
     var ul = d3.select('#list');
 
+    d3.select("#content").selectAll("h4").text("myList:");
+
     ul.selectAll('li').remove();
 
     ul.selectAll('li')
@@ -57,6 +59,43 @@ function showList(){
         .append('li')
         .html(String);
 }
+
+//pulls first item out of list
+function shiftlist(){
+    console.log(myList.shift());
+    showList();
+}
+//pulls the last item out of the list
+function poplist(){
+    console.log(myList.pop());
+    showList();
+}
+
+function sleep(miliseconds) {
+    var currentTime = new Date().getTime();
+    while (currentTime + miliseconds >= new Date().getTime()) {
+    }
+}
+
+function foreachlist(){
+    d3.select("#content").selectAll("h4").text("Console:");
+    d3.select('#list').selectAll('li').remove();
+    var ul = d3.select('#list');
+
+    myList.forEach(function(value, index) {
+        var string_out = "You have " + value + " in your list!";
+        var tempList = [];
+        tempList.push(string_out);
+        ul.selectAll('li')
+            .data(tempList)
+            .enter()
+            .append('li')
+            .html(String);
+        console.log(string_out);
+        // sleep(1000);
+    })
+}
+
 
 showList();
 document.getElementById("clear_btn").onclick = clearlist;

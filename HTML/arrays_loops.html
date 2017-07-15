@@ -14,6 +14,7 @@
         <h2>This is just a page for playing around with Arrays & Loops in JavaScript.</h2>
     </div>
     <div id ="sidebar">
+        <a href="../index.html"><input id="back_btn" class="button" type="button" value="Home" /></a>
         <br />
         <br />
         <input id="clear_btn" class="button" type="button" value="Clear List" />
@@ -28,19 +29,31 @@
         <input id="func_btn" class="button" type="button" value="Add Function" onclick="addfunc();" />
         <br />
         <br />
+        <input id="addlist_btn" class="button" type="button" value="Add List" onclick="addlist();" />
+        <br />
+        <br />
+        <input id="shift_btn" class="button" type="button" value="Shift List" onclick="shiftlist();" />
+        <br />
+        <br />
+        <input id="pop_btn" class="button" type="button" value="Pop List" onclick="poplist();" />
+        <br />
+        <br />
+        <input id="foreach_btn" class="button" type="button" value="forEach List" onclick="foreachlist();" />
     </div>
     <div id ="content">
         <p>Everything can be stored in an array in Java Script. Click below to add things to a list.</p>
-
+        <h4>myList:</h4>
         <div id="list">
-            <h4>myList:</h4>
+
         </div>
     </div>
     <div id ="footer">
+
+
     </div>
 </div>
 <script src="../JS/array_loops.js"></script>
 
 </body>
-<footer><a href="../index.html"> <<< BACK <<< </a></footer>
+
 </html>
