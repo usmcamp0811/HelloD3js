@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Tutorial</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+
+</head>
+<body>
+
+    <p>This is the begining of my journey to learning JavaScript with D3.</p>
+		<!--<a href="http://www.google.com", -->
+			<!--title="This is a link to Google">Google Website</a>-->
+
+</body>
+
+<div class="chart">
+
+</div>
+
+<script>
+
+// selects the paragraph and replaces the text.
+d3.select("p").text("Hello World!");
+
+d3.select("a")
+    .attr("href", "https://d3js.org/")
+    .attr("title", "Google link was switched to D3js' page.")
+    .text("D3js Website");
+
+// selects the body and adds some text.
+d3.select("body")
+.append("p")
+.style("color", "red")
+.text("This text is being appended to the body of the *.html file with D3.");
+
+
+
+var dataArray = [20, 40, 500, 90];
+var width = 500;
+var height = 500;
+
+var widthScale = d3.scale.linear()
+    .domain([0, Math.max.apply(null, dataArray)])
+    .range([0, width]);
+
+// Appending a SVG canvas to the body.
+var canvas = d3.select("body")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+// Example shapes..
+//TODO: figure out how to move rectangles... whats the x,y attr?
+//var circle = canvas.append("circle")
+//    .attr("cx", 250)
+//    .attr("cy", 250)
+//    .attr("r", 50)
+//    .attr("fill", "red");
+
+//var rect = canvas.append("rect")
+//    .attr("width", 100)
+//    .attr("height", 50);
+
+//var line = canvas.append("line")
+//    .attr("x1", 0)
+//    .attr("y1", 100)
+//    .attr("x2", 400)
+//    .attr("y2", 350)
+//    .attr("stroke", "blue")
+//    .attr("stroke-width", 8);
+
+
+
+var bars = canvas.selectAll("rect")
+    .data(dataArray)
+    .enter()
+    .append("rect")
+    .attr("width", function(d) { return widthScale(d); })
+    .attr("height", 50)
+    .attr("y", function(d, i) { return i * 100});
+
+</script>
+
+</html>
