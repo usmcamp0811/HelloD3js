@@ -82,9 +82,8 @@ function foreachlist(){
     d3.select('#list').selectAll('li').remove();
     var ul = d3.select('#list');
     var tempList = [];
-    myList.forEach(function(value, index) {
-        var string_out = "You have " + value + " in your list!";
-
+    myList.forEach(function(value) {
+        var string_out = "You have " + value + " in your list.";
         tempList.push(string_out);
         ul.selectAll('li')
             .data(tempList)
@@ -92,7 +91,6 @@ function foreachlist(){
             .append('li')
             .html(String);
         console.log(string_out);
-        // sleep(1000);
     })
 }
 
