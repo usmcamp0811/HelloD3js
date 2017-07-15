@@ -81,10 +81,10 @@ function foreachlist(){
     d3.select("#content").selectAll("h4").text("Console:");
     d3.select('#list').selectAll('li').remove();
     var ul = d3.select('#list');
-
+    var tempList = [];
     myList.forEach(function(value, index) {
         var string_out = "You have " + value + " in your list!";
-        var tempList = [];
+
         tempList.push(string_out);
         ul.selectAll('li')
             .data(tempList)
