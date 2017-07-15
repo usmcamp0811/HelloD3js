@@ -3,21 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Arrays & Loops in JavaScript</title>
+    <link rel="stylesheet" href="../CSS/array_loop.css">
     <script src="http://d3js.org/d3.v3.min.js"></script>
 </head>
 <body>
 
-This is just a page for playing around with Arrays & Loops in JavaScript.
 
+<div id ="container">
+    <div id ="header">
+        <h2>This is just a page for playing around with Arrays & Loops in JavaScript.</h2>
+    </div>
+    <div id ="sidebar">
+        <br />
+        <br />
+        <input id="clear_btn" class="button" type="button" value="Clear List" />
+        <br />
+        <br />
+        <input id="add_btn" class="button" type="button" value="Add Item" />
+        <br />
+        <br />
+        <input id="replace_btn" class="button" type="button" value="Replace Item" onclick="replace();" />
+        <br />
+        <br />
+        <input id="func_btn" class="button" type="button" value="Add Function" onclick="addfunc();" />
+        <br />
+        <br />
+    </div>
+    <div id ="content">
+        <p>Everything can be stored in an array in Java Script. Click below to add things to a list.</p>
+
+        <div id="list">
+            <h4>myList:</h4>
+        </div>
+    </div>
+    <div id ="footer">
+    </div>
+</div>
 <script src="../JS/array_loops.js"></script>
-<br />
-<br />
-<input id="clickMe" type="button" value="See MyList" onclick="showList();" />
-<br />
-<br />
-<input id="clickMe2" type="button" value="See a function in List!" onclick="myList[4]();" />
-<br />
-<br />
+
 </body>
 <footer><a href="../index.html"> <<< BACK <<< </a></footer>
 </html>
