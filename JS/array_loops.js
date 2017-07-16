@@ -94,7 +94,64 @@ function foreachlist(){
     })
 }
 
+function redbackground(){
 
+    d3.selectAll("#list").style("background", "red");
+    d3.selectAll("#list li").style("background", "red");
+    sleep(700);
+    console.log('wait for it');
+    normalbackground();
+}
+
+function normalbackground(){
+    // sleep(100);
+    d3.selectAll("#list").style("background", "#f1e8ec");
+    d3.selectAll("#list li").style("background", "#f1e8ec");
+}
+
+function whileLight(){
+    times++;
+    if(times % 2 === 0){
+                console.log('wait for it!');
+
+                d3.selectAll("#list").style("background", "red");
+                d3.selectAll("#list li").style("background", "red");
+
+
+            } else {
+                console.log('wait for it');
+
+                d3.selectAll("#list").style("background", "#f1e8ec");
+                d3.selectAll("#list li").style("background", "#f1e8ec");
+            }
+
+    // sleep(2000);
+    // d3.selectAll("#list").style("background", "#f1e8ec");
+    // d3.selectAll("#list li").style("background", "#f1e8ec");
+    // sleep(1000);
+    // while (times < 10) {
+    //     times++;
+    //
+    //     if(times % 2 === 0){
+    //         console.log('wait for it!');
+    //
+    //         d3.selectAll("#list").style("background", "red");
+    //         d3.selectAll("#list li").style("background", "red");
+    //
+    //
+    //     } else {
+    //         console.log('wait for it');
+    //
+    //         d3.selectAll("#list").style("background", "#f1e8ec");
+    //         d3.selectAll("#list li").style("background", "#f1e8ec");
+    //     }
+    //
+    // }
+
+}
+
+
+var times = 0;
 showList();
 document.getElementById("clear_btn").onclick = clearlist;
 document.getElementById("add_btn").onclick = add;
