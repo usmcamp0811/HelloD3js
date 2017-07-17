@@ -85,14 +85,30 @@
     height: 300px;
     padding: 10px;
     text-align: left;
-    background: #f1e8ec;
+    background: #cee1ea;
 }
-#list li.todo {
+#list label {
     text-align: left;
-    background: #f1e8ec;
+    background: #cee1ea;
     font-family: "Courier 10 Pitch", monospace;
     color: brown;
 }
+
+#list label.done {
+    text-align: left;
+    background: #cee1ea;
+    font-family: "Courier 10 Pitch", monospace;
+    text-decoration: line-through;
+    color: brown;
+}
+
+#list label.not-done {
+    text-align: left;
+    background: #cee1ea;
+    font-family: "Courier 10 Pitch", monospace;
+    color: brown;
+}
+
 #content h4 {
     padding: 0px;
     margin: 0px;

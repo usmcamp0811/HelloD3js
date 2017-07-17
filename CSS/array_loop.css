@@ -16,7 +16,7 @@
     display:inline-block;
     cursor:pointer;
     color:#ffffff;
-    font-family:Arial;
+    font-family:Arial, monospace;
     font-size:15px;
     font-weight:bold;
     padding:13px 32px;
@@ -50,6 +50,8 @@
     height: 50px;
     padding: 5px;
     background: #ffffff;
+    text-align: center;
+    font-family:  'Raleway', monospace;
 }
 
 #sidebar {
@@ -57,7 +59,7 @@
     width:170px;
     background: #ffffff;
     float:left;
-    font-family:  'Raleway';
+    font-family:  'Raleway', monospace;
     font-size: 11px;
     padding: 5px;
 }
@@ -71,7 +73,7 @@
 #footer {
     width:630px;
     height: 50px;
-    font-family:  'Raleway';
+    font-family:  'Raleway', monospace;
     font-size: 25px;
     background: #ffffff;
     float:left;
@@ -88,12 +90,12 @@
 #list li {
     text-align: left;
     background: #f1e8ec;
-    font-family: "Courier 10 Pitch";
+    font-family: "Courier 10 Pitch", monospace;
     color: brown;
 }
 #content h4 {
     padding: 0px;
     margin: 0px;
-    font-family: "Droid Sans";
+    font-family: "Droid Sans", monospace;
     font-size: 20px;
 }

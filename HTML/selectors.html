@@ -5,6 +5,8 @@
     <title>Learning JavaScript Selectors</title>
     <link rel="stylesheet" href="../CSS/selectors.css">
     <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
 <div id ="container">
@@ -15,42 +17,23 @@
         <a href="../index.html"><input id="back_btn" class="button" type="button" value="Home" /></a>
         <br />
         <br />
-        <input id="clear_btn" class="button" type="button" value="Clear List" />
-        <br />
-        <br />
-        <input id="add_btn" class="button" type="button" value="Add Item" />
-        <br />
-        <br />
-        <input id="replace_btn" class="button" type="button" value="Replace Item" onclick="replace();" />
-        <br />
-        <br />
-        <input id="func_btn" class="button" type="button" value="Add Function" onclick="addfunc();" />
-        <br />
-        <br />
-        <input id="addlist_btn" class="button" type="button" value="Add List" onclick="addlist();" />
-        <br />
-        <br />
-        <input id="shift_btn" class="button" type="button" value="Shift List" onclick="shiftlist();" />
-        <br />
-        <br />
-        <input id="pop_btn" class="button" type="button" value="Pop List" onclick="poplist();" />
-        <br />
-        <br />
-        <input id="foreach_btn" class="button" type="button" value="forEach List" onclick="foreachlist();" />
-        <br />
-        <br />
-        <input id="loop_btn" class="button" type="button" value="Loop Example" onclick="whileLight();" />
+        <input id="loop_btn" class="button" type="button" value="Select Text" onclick="whileLight();" />
+
     </div>
     <div id ="content">
-
+        <p>This is a sample paragraph for JavaScript to manipulate.</p>
+        <br />
+        <p>Yet another paragraph for mannipulation.</p>
+        <br />
+        <br />
         <h4>myList:</h4>
         <div id="list">
-            <li class="todo">This</li>
-            <li class="todo">is</li>
-            <li class="todo">a</li>
-            <li class="todo">list</li>
-            <li class="done" style="text-decoration: line-through">in</li>
-            <li class="done" style="text-decoration: line-through">HTML.</li>
+            <input type="checkbox" name="This"> <label for="This" class="done" id="This">This</label><br>
+            <input type="checkbox" name="is"> <label for="is" class="done" id="is">is</label><br>
+            <input type="checkbox" name="a"> <label for="a" class="done" id="a">a</label><br>
+            <input type="checkbox" name="check"> <label for="check" class="done" id="check">check</label><br>
+            <input type="checkbox" name="list."> <label for="list." class="done" id="list.">list.</label><br>
+
         </div>
     </div>
     <div id ="footer">
