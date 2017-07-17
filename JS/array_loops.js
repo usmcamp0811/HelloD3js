@@ -109,21 +109,29 @@ function normalbackground(){
     d3.selectAll("#list li").style("background", "#f1e8ec");
 }
 
+//TODO: Figure out why I can't change the background inside of a loop...
+//Think its just going to fast but maybe not cause I do put a timer on it.
 function whileLight(){
-    times++;
-    if(times % 2 === 0){
-                console.log('wait for it!');
+    console.log('Starting..maybe');
+    for (var i=0;i<20; i++){
+        console.log('I is ' + i);
+        if(i % 2 === 0){
+            console.log('wait for it!');
 
-                d3.selectAll("#list").style("background", "red");
-                d3.selectAll("#list li").style("background", "red");
+            d3.selectAll("#list").style("background", "red");
+            d3.selectAll("#list li").style("background", "red");
+            sleep(1000);
 
+        } else {
+            console.log('wait for it');
 
-            } else {
-                console.log('wait for it');
+            d3.selectAll("#list").style("background", "#blue");
+            d3.selectAll("#list li").style("background", "#blue");
+            sleep(100);
+        }
+    }
+    // times++;
 
-                d3.selectAll("#list").style("background", "#f1e8ec");
-                d3.selectAll("#list li").style("background", "#f1e8ec");
-            }
 
     // sleep(2000);
     // d3.selectAll("#list").style("background", "#f1e8ec");
