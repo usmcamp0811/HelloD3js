@@ -7,27 +7,26 @@ var firstPTag = pTags[0];
 var secPTag = pTags[1];
 var checkBoxes = document.getElementsByName("myList");
 
-// checkBoxes.checked = true;
-function checkBox(box){
-//    get current state of selected box
-    var checkBox = document.getElementsByName(box);
-    var label = document.getElementById(box);
-    var state = checkBox.checked;
-    if (state === true){
-        checkBox.checked = false;
-        label.className = "not-done";
-        console.log('not done');
 
+
+function update(item){
+    if(d3.select("#"+item).property("checked")){
+        d3.select("#"+item+"Label").attr("class", "done");
     } else {
-        checkBox.checked = true;
-        label.className = "done";
+        // alert("Not CHecked");
+        d3.select("#"+item+"Label").attr("class", "not-done");
     }
 }
 
+table = d3.select("#list")
+
+d3.select("#myCheckbox").on("change",update);
+// update()
 // document.getElementsByName("This").onclick = checkBox("This");
-console.log(document.getElementsByName("This"))
-document.getElementsByName("This")[0].onclick = checkBox("This");
-console.log(document.getElementsByName("This"))
+// console.log(document.getElementById('this'));
+// document.getElementById('this').checked = false
+// document.getElementById('this').onclick = checkBox();
+// console.log(document.getElementById('this').checked);
 // console.log("This is the text from paragraph one: " + firstPTag.outerText);
 // console.log(checkBoxes[0].checked);
 // console.log(checkBoxes[1].checked);
