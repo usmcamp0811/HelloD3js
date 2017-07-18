@@ -2,6 +2,7 @@
  * Created by mcamp on 7/16/17.
  */
 
+//Some examples in basic JS
 var pTags = document.getElementsByTagName('p');
 var firstPTag = pTags[0];
 var secPTag = pTags[1];
@@ -10,6 +11,7 @@ var checkBoxes = document.getElementsByName("myList");
 
 
 function update(item){
+    var item = item;
     if(d3.select("#"+item).property("checked")){
         d3.select("#"+item+"Label").attr("class", "done");
     } else {
@@ -18,16 +20,10 @@ function update(item){
     }
 }
 
-table = d3.select("#list")
-
-d3.select("#myCheckbox").on("change",update);
-// update()
-// document.getElementsByName("This").onclick = checkBox("This");
-// console.log(document.getElementById('this'));
-// document.getElementById('this').checked = false
-// document.getElementById('this').onclick = checkBox();
-// console.log(document.getElementById('this').checked);
-// console.log("This is the text from paragraph one: " + firstPTag.outerText);
-// console.log(checkBoxes[0].checked);
-// console.log(checkBoxes[1].checked);
-
+//Selection done in D3.. seems to be a little cleaner IMHO.
+d3.select("#myCheckbox1").on("change", function() { update("myCheckbox1"); } );
+d3.select("#myCheckbox2").on("change", function() { update("myCheckbox2"); } );
+d3.select("#myCheckbox3").on("change", function() { update("myCheckbox3"); } );
+d3.select("#myCheckbox4").on("change", function() { update("myCheckbox4"); } );
+d3.select("#myCheckbox5").on("change", function() { update("myCheckbox5"); } );
+d3.select("#myCheckbox6").on("change", function() { update("myCheckbox6"); } );
