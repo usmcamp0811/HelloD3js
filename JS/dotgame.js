@@ -8,7 +8,22 @@ var canvas = d3.select("body")
     .attr("width", width)
     .attr("height", height);
 
-function dotCell(xUpperLeft, yUpperLeft, side, cellName, dotRadius, lastCell) {
+function makeDot(x, y, cellName, dotRadius){
+
+    canvas.append("circle")
+        .attr("class", cellName)
+        .attr("group", "dot")
+        .attr("cx", x)
+        .attr("cy", y)
+        .attr("r", dotRadius)
+        .attr("fill", "red")
+        .on("mouseover", handleDotMouseOver)
+        .on("mouseout", handleDotMouseOut)
+        .on("mousedown", dotDrag);
+
+}
+
+function dotCell(xUpperLeft, yUpperLeft, side, cellName, dotRadius) {
     var cellObj = {};
     cellObj.xUpperLeft = xUpperLeft;
     cellObj.yUpperLeft = yUpperLeft;
@@ -28,112 +43,107 @@ function dotCell(xUpperLeft, yUpperLeft, side, cellName, dotRadius, lastCell) {
     cellObj.ownedBy = "None";
     cellObj.point = 0;
 
-    canvas.append("line")
-        .attr("class", cellName)
-        .attr("id", "topSide_" + cellObj.name)
-        .attr("group", "line")
-        .attr("x1", cellObj.xUpperLeft)
-        .attr("y1", cellObj.yUpperLeft)
-        .attr("x2", cellObj.xUpperRight)
-        .attr("y2", cellObj.yUpperRight)
-        .attr("stroke", "white")
-        .attr("stroke-width", 2)
-        .on("mouseover", handleLineMouseOver)
-        .on("mouseout", handleLineMouseOut);
-
-    canvas.append("line")
-        .attr("class", cellName)
-        .attr("id", "rightSide_" + cellObj.name)
-        .attr("group", "line")
-        .attr("x1", cellObj.xUpperRight)
-        .attr("y1", cellObj.yUpperRight)
-        .attr("x2", cellObj.xLowerRight)
-        .attr("y2", cellObj.yLowerRight)
-        .attr("stroke", "white")
-        .attr("stroke-width", 2)
-        .on("mouseover", handleLineMouseOver)
-        .on("mouseout", handleLineMouseOut);
-
-    canvas.append("line")
-        .attr("class", cellName)
-        .attr("id", "bottomSide_" + cellObj.name)
-        .attr("group", "line")
-        .attr("x1", cellObj.xLowerLeft)
-        .attr("y1", cellObj.yLowerLeft)
-        .attr("x2", cellObj.xLowerRight)
-        .attr("y2", cellObj.yLowerRight)
-        .attr("stroke", "white")
-        .attr("stroke-width", 2)
-        .on("mouseover", handleLineMouseOver)
-        .on("mouseout", handleLineMouseOut);
-
-    canvas.append("line")
-        .attr("class", cellName)
-        .attr("id", "leftSide_" + cellObj.name)
-        .attr("group", "line")
-        .attr("x1", cellObj.xLowerLeft)
-        .attr("y1", cellObj.yLowerLeft)
-        .attr("x2", cellObj.xUpperLeft)
-        .attr("y2", cellObj.yUpperLeft)
-        .attr("stroke", "white")
-        .attr("stroke-width", 2)
-        .on("mouseover", handleLineMouseOver)
-        .on("mouseout", handleLineMouseOut);
-
-    canvas.append("circle")
-        .attr("class", cellObj.cellName)
-        .attr("id", "UpperLeft_"+ cellObj.name)
-        .attr("group", "dot")
-        .attr("cx", cellObj.xUpperLeft)
-        .attr("cy", cellObj.yUpperLeft)
-        .attr("r", cellObj.dotRadius)
-        .attr("fill", "red")
-        .on("mouseover", handleDotMouseOver)
-        .on("mouseout", handleDotMouseOut)
-        .on("mousedown", dotDrag);
-
-    if(lastCell===true){
-        canvas.append("circle")
-            .attr("class", cellName)
-            .attr("id", "UpperRight_" + cellObj.name)
-            .attr("group", "dot")
-            .attr("cx", cellObj.xUpperRight)
-            .attr("cy", cellObj.yUpperRight)
-            .attr("r", cellObj.dotRadius)
-            .attr("fill", "green")
-            .on("mouseover", handleDotMouseOver)
-            .on("mouseout", handleDotMouseOut)
-            .on("mousedown", dotDrag);
-
-        canvas.append("circle")
-            .attr("class", cellObj.cellName)
-            .attr("id", "LowerLeft_"+ cellObj.name)
-            .attr("group", "dot")
-            .attr("cx", cellObj.xLowerLeft)
-            .attr("cy", cellObj.yLowerLeft)
-            .attr("r", cellObj.dotRadius)
-            .attr("fill", "blue")
-            .on("mouseover", handleDotMouseOver)
-            .on("mouseout", handleDotMouseOut)
-            .on("mousedown", dotDrag);
-
-        canvas.append("circle")
-            .attr("class", cellObj.cellName)
-            .attr("id", "LowerRight_"+ cellObj.name)
-            .attr("group", "dot")
-            .attr("cx", cellObj.xLowerRight)
-            .attr("cy", cellObj.yLowerRight)
-            .attr("r", cellObj.dotRadius)
-            .attr("fill", "black")
-            .on("mouseover", handleDotMouseOver)
-            .on("mouseout", handleDotMouseOut)
-            .on("mousedown", dotDrag);
-
-    }
+    // canvas.append("line")
+    //     .attr("class", cellName)
+    //     .attr("id", "topSide_" + cellObj.name)
+    //     .attr("group", "line")
+    //     .attr("x1", cellObj.xUpperLeft)
+    //     .attr("y1", cellObj.yUpperLeft)
+    //     .attr("x2", cellObj.xUpperRight)
+    //     .attr("y2", cellObj.yUpperRight)
+    //     .attr("stroke", "white")
+    //     .attr("stroke-width", 2)
+    //     .on("mouseover", handleLineMouseOver)
+    //     .on("mouseout", handleLineMouseOut);
     //
-
-
-
+    // canvas.append("line")
+    //     .attr("class", cellName)
+    //     .attr("id", "rightSide_" + cellObj.name)
+    //     .attr("group", "line")
+    //     .attr("x1", cellObj.xUpperRight)
+    //     .attr("y1", cellObj.yUpperRight)
+    //     .attr("x2", cellObj.xLowerRight)
+    //     .attr("y2", cellObj.yLowerRight)
+    //     .attr("stroke", "white")
+    //     .attr("stroke-width", 2)
+    //     .on("mouseover", handleLineMouseOver)
+    //     .on("mouseout", handleLineMouseOut);
+    //
+    // canvas.append("line")
+    //     .attr("class", cellName)
+    //     .attr("id", "bottomSide_" + cellObj.name)
+    //     .attr("group", "line")
+    //     .attr("x1", cellObj.xLowerLeft)
+    //     .attr("y1", cellObj.yLowerLeft)
+    //     .attr("x2", cellObj.xLowerRight)
+    //     .attr("y2", cellObj.yLowerRight)
+    //     .attr("stroke", "white")
+    //     .attr("stroke-width", 2)
+    //     .on("mouseover", handleLineMouseOver)
+    //     .on("mouseout", handleLineMouseOut);
+    //
+    // canvas.append("line")
+    //     .attr("class", cellName)
+    //     .attr("id", "leftSide_" + cellObj.name)
+    //     .attr("group", "line")
+    //     .attr("x1", cellObj.xLowerLeft)
+    //     .attr("y1", cellObj.yLowerLeft)
+    //     .attr("x2", cellObj.xUpperLeft)
+    //     .attr("y2", cellObj.yUpperLeft)
+    //     .attr("stroke", "white")
+    //     .attr("stroke-width", 2)
+    //     .on("mouseover", handleLineMouseOver)
+    //     .on("mouseout", handleLineMouseOut);
+    //
+    // canvas.append("circle")
+    //     .attr("class", cellObj.cellName)
+    //     .attr("id", "UpperLeft_"+ cellObj.name)
+    //     .attr("group", "dot")
+    //     .attr("cx", cellObj.xUpperLeft)
+    //     .attr("cy", cellObj.yUpperLeft)
+    //     .attr("r", cellObj.dotRadius)
+    //     .attr("fill", "red")
+    //     .on("mouseover", handleDotMouseOver)
+    //     .on("mouseout", handleDotMouseOut)
+    //     .on("mousedown", dotDrag);
+    //
+    // if(lastCell===true){
+    //     canvas.append("circle")
+    //         .attr("class", cellName)
+    //         .attr("id", "UpperRight_" + cellObj.name)
+    //         .attr("group", "dot")
+    //         .attr("cx", cellObj.xUpperRight)
+    //         .attr("cy", cellObj.yUpperRight)
+    //         .attr("r", cellObj.dotRadius)
+    //         .attr("fill", "green")
+    //         .on("mouseover", handleDotMouseOver)
+    //         .on("mouseout", handleDotMouseOut)
+    //         .on("mousedown", dotDrag);
+    //
+    //     canvas.append("circle")
+    //         .attr("class", cellObj.cellName)
+    //         .attr("id", "LowerLeft_"+ cellObj.name)
+    //         .attr("group", "dot")
+    //         .attr("cx", cellObj.xLowerLeft)
+    //         .attr("cy", cellObj.yLowerLeft)
+    //         .attr("r", cellObj.dotRadius)
+    //         .attr("fill", "blue")
+    //         .on("mouseover", handleDotMouseOver)
+    //         .on("mouseout", handleDotMouseOut)
+    //         .on("mousedown", dotDrag);
+    //
+    //     canvas.append("circle")
+    //         .attr("class", cellObj.cellName)
+    //         .attr("id", "LowerRight_"+ cellObj.name)
+    //         .attr("group", "dot")
+    //         .attr("cx", cellObj.xLowerRight)
+    //         .attr("cy", cellObj.yLowerRight)
+    //         .attr("r", cellObj.dotRadius)
+    //         .attr("fill", "black")
+    //         .on("mouseover", handleDotMouseOver)
+    //         .on("mouseout", handleDotMouseOut)
+    //         .on("mousedown", dotDrag);
+    //
 
     return cellObj;
 }
@@ -158,11 +168,10 @@ function makeBoard(size){
 
     for (var x=0; x<xOrigins.length; x++) {
         for (var y=0; y<yOrigins.length; y++) {
-            var cellName="cell"+x+"-"+y;
-            if(x===xOrigins.length-1){
-                var lastCell = true;
-            }
-            boardObj.push(dotCell(xOrigins[x], yOrigins[y], cellSize, cellName, radius, lastCell));
+            var cellName="dot_"+x+"-"+y;
+
+            boardObj.push(dotCell(xOrigins[x], yOrigins[y], cellSize, cellName, radius));
+            makeDot(xOrigins[x], yOrigins[y], cellName, radius);
         }
     }
     var boardArr = [];
@@ -173,7 +182,7 @@ function makeBoard(size){
 
 
 board = makeBoard(12);
-console.log(board[0][1].ownedBy);
+console.log(board[0][1]);
 // tip = d3.tip().html(function(d) { return "dog"; });
 
 //Define and set up the tooltip
@@ -265,5 +274,13 @@ function handleLineMouseOut(d, i) {
 
 }
 
+function moveLookup(dotX, dotY){
+
+    var possibleX = [dotX, dotX+1, dotX, dotX-1];
+    var possibleY = [dotY+1, dotY, dotY-1, dotY];
+
+    if()
 
 
+
+}
