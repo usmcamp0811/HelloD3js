@@ -4,71 +4,71 @@
 
 //TODO: Learn how to move the data to a json file and import it from there
 //Set up the data
-// horror = [{
-//     "name": "ape man",
-//     "physicalstrength": 20,
-//     "fearfactor": 7,
-//     "killingpower": 12,
-//     "horrorrating": 4,
-//     "cluster": 1
-//
-// }, {
-//     "name": "godzilla",
-//     "physicalstrength": 3,
-//     "fearfactor": 5,
-//     "killingpower": 4,
-//     "horrorrating": 8,
-//     "cluster": 2
-//
-// }, {
-//     "name": "the ghoul",
-//     "physicalstrength": 7,
-//     "fearfactor": 12,
-//     "killingpower": 2,
-//     "horrorrating": 7,
-//     "cluster": 1
-//
-// }, {
-//     "name": "the freak",
-//     "physicalstrength": 9,
-//     "fearfactor": 2,
-//     "killingpower": 1,
-//     "horrorrating": 17,
-//     "cluster": 1
-//
-// }, {
-//     "name": "dracula",
-//     "physicalstrength": 4,
-//     "fearfactor": 17,
-//     "killingpower": 5,
-//     "horrorrating": 16,
-//     "cluster": 2
-//
-// }, {
-//     "name": "the hangman",
-//     "physicalstrength": 2,
-//     "fearfactor": 4,
-//     "killingpower": 13,
-//     "horrorrating": 8,
-//     "cluster": 2
-//
-// }, {
-//     "name": "incredible melting man",
-//     "physicalstrength": 3,
-//     "fearfactor": 8,
-//     "killingpower": 15,
-//     "horrorrating": 6,
-//     "cluster": 1
-//
-// }, {
-//     "name": "the thing",
-//     "physicalstrength": 19,
-//     "fearfactor": 4,
-//     "killingpower": 11,
-//     "horrorrating": 7,
-//     "cluster": 1
-//
-// }];
+horror = [{
+    "name": "ape man",
+    "physicalstrength": 20,
+    "fearfactor": 7,
+    "killingpower": 12,
+    "horrorrating": 4,
+    "cluster": 1
+
+}, {
+    "name": "godzilla",
+    "physicalstrength": 3,
+    "fearfactor": 5,
+    "killingpower": 4,
+    "horrorrating": 8,
+    "cluster": 2
+
+}, {
+    "name": "the ghoul",
+    "physicalstrength": 7,
+    "fearfactor": 12,
+    "killingpower": 2,
+    "horrorrating": 7,
+    "cluster": 1
+
+}, {
+    "name": "the freak",
+    "physicalstrength": 9,
+    "fearfactor": 2,
+    "killingpower": 1,
+    "horrorrating": 17,
+    "cluster": 1
+
+}, {
+    "name": "dracula",
+    "physicalstrength": 4,
+    "fearfactor": 17,
+    "killingpower": 5,
+    "horrorrating": 16,
+    "cluster": 2
+
+}, {
+    "name": "the hangman",
+    "physicalstrength": 2,
+    "fearfactor": 4,
+    "killingpower": 13,
+    "horrorrating": 8,
+    "cluster": 2
+
+}, {
+    "name": "incredible melting man",
+    "physicalstrength": 3,
+    "fearfactor": 8,
+    "killingpower": 15,
+    "horrorrating": 6,
+    "cluster": 1
+
+}, {
+    "name": "the thing",
+    "physicalstrength": 19,
+    "fearfactor": 4,
+    "killingpower": 11,
+    "horrorrating": 7,
+    "cluster": 1
+
+}];
 // var horror = [{}];
 // $.getJSON("../Data/scatter_plot_example_data.json", function(data) {
 //     items = data;
@@ -76,11 +76,11 @@
 //         d.physicalstrength, d.fearfactor, d.killingpower, d.horrorrating
 //     });
 // });
-var horror;
-var json = d3.json("../Data/scatter_plot_example_data.json", function(json) {
-    forEach(json);
-    // console.log(horror);
-});
+// var horror;
+// var json = d3.json("../Data/scatter_plot_example_data.json", function(json) {
+//     forEach(json);
+//     // console.log(horror);
+// });
 
 console.log("shit", horror[0]);
 //Set constants
