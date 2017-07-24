@@ -163,3 +163,9 @@ var times = 0;
 showList();
 document.getElementById("clear_btn").onclick = clearlist;
 document.getElementById("add_btn").onclick = add;
+
+function checkIfExistingValue(obj, key, value) {
+    return obj.hasOwnProperty(key) && obj[key] === value;
+}
+var test = [{name : "jack", sex: "F"}, {name: "joe", sex: "M"}]
+console.log(test.some(function(person) { return checkIfExistingValue(person, "name", "jack"); }));

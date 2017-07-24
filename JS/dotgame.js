@@ -8,10 +8,13 @@ var canvas = d3.select("body")
     .attr("width", width)
     .attr("height", height);
 
-function makeDot(x, y, cellName, dotRadius){
+function makeDot(x, y, cellName, dotRadius, row, col){
 
     canvas.append("circle")
-        .attr("class", cellName)
+        .attr("id", cellName)
+        .attr("row", row)
+        .attr("col", col)
+        .attr("location", row+","+col)
         .attr("group", "dot")
         .attr("cx", x)
         .attr("cy", y)
@@ -20,6 +23,21 @@ function makeDot(x, y, cellName, dotRadius){
         .on("mouseover", handleDotMouseOver)
         .on("mouseout", handleDotMouseOut)
         .on("mousedown", dotDrag);
+
+}
+
+function drawLine(xStart, yStart, xEnd, yEnd){
+
+    canvas.append("line")
+        .attr("group", "line")
+        .attr("x1", xStart)
+        .attr("y1", yStart)
+        .attr("x2", xEnd)
+        .attr("y2", yEnd)
+        .attr("stroke", "black")
+        .attr("stroke-width", 2)
+        .on("mouseover", handleLineMouseOver)
+        .on("mouseout", handleLineMouseOut);
 
 }
 
@@ -42,120 +60,20 @@ function dotCell(xUpperLeft, yUpperLeft, side, cellName, dotRadius) {
     cellObj.bottomSide = false;
     cellObj.ownedBy = "None";
     cellObj.point = 0;
-
-    // canvas.append("line")
-    //     .attr("class", cellName)
-    //     .attr("id", "topSide_" + cellObj.name)
-    //     .attr("group", "line")
-    //     .attr("x1", cellObj.xUpperLeft)
-    //     .attr("y1", cellObj.yUpperLeft)
-    //     .attr("x2", cellObj.xUpperRight)
-    //     .attr("y2", cellObj.yUpperRight)
-    //     .attr("stroke", "white")
-    //     .attr("stroke-width", 2)
-    //     .on("mouseover", handleLineMouseOver)
-    //     .on("mouseout", handleLineMouseOut);
-    //
-    // canvas.append("line")
-    //     .attr("class", cellName)
-    //     .attr("id", "rightSide_" + cellObj.name)
-    //     .attr("group", "line")
-    //     .attr("x1", cellObj.xUpperRight)
-    //     .attr("y1", cellObj.yUpperRight)
-    //     .attr("x2", cellObj.xLowerRight)
-    //     .attr("y2", cellObj.yLowerRight)
-    //     .attr("stroke", "white")
-    //     .attr("stroke-width", 2)
-    //     .on("mouseover", handleLineMouseOver)
-    //     .on("mouseout", handleLineMouseOut);
-    //
-    // canvas.append("line")
-    //     .attr("class", cellName)
-    //     .attr("id", "bottomSide_" + cellObj.name)
-    //     .attr("group", "line")
-    //     .attr("x1", cellObj.xLowerLeft)
-    //     .attr("y1", cellObj.yLowerLeft)
-    //     .attr("x2", cellObj.xLowerRight)
-    //     .attr("y2", cellObj.yLowerRight)
-    //     .attr("stroke", "white")
-    //     .attr("stroke-width", 2)
-    //     .on("mouseover", handleLineMouseOver)
-    //     .on("mouseout", handleLineMouseOut);
-    //
-    // canvas.append("line")
-    //     .attr("class", cellName)
-    //     .attr("id", "leftSide_" + cellObj.name)
-    //     .attr("group", "line")
-    //     .attr("x1", cellObj.xLowerLeft)
-    //     .attr("y1", cellObj.yLowerLeft)
-    //     .attr("x2", cellObj.xUpperLeft)
-    //     .attr("y2", cellObj.yUpperLeft)
-    //     .attr("stroke", "white")
-    //     .attr("stroke-width", 2)
-    //     .on("mouseover", handleLineMouseOver)
-    //     .on("mouseout", handleLineMouseOut);
-    //
-    // canvas.append("circle")
-    //     .attr("class", cellObj.cellName)
-    //     .attr("id", "UpperLeft_"+ cellObj.name)
-    //     .attr("group", "dot")
-    //     .attr("cx", cellObj.xUpperLeft)
-    //     .attr("cy", cellObj.yUpperLeft)
-    //     .attr("r", cellObj.dotRadius)
-    //     .attr("fill", "red")
-    //     .on("mouseover", handleDotMouseOver)
-    //     .on("mouseout", handleDotMouseOut)
-    //     .on("mousedown", dotDrag);
-    //
-    // if(lastCell===true){
-    //     canvas.append("circle")
-    //         .attr("class", cellName)
-    //         .attr("id", "UpperRight_" + cellObj.name)
-    //         .attr("group", "dot")
-    //         .attr("cx", cellObj.xUpperRight)
-    //         .attr("cy", cellObj.yUpperRight)
-    //         .attr("r", cellObj.dotRadius)
-    //         .attr("fill", "green")
-    //         .on("mouseover", handleDotMouseOver)
-    //         .on("mouseout", handleDotMouseOut)
-    //         .on("mousedown", dotDrag);
-    //
-    //     canvas.append("circle")
-    //         .attr("class", cellObj.cellName)
-    //         .attr("id", "LowerLeft_"+ cellObj.name)
-    //         .attr("group", "dot")
-    //         .attr("cx", cellObj.xLowerLeft)
-    //         .attr("cy", cellObj.yLowerLeft)
-    //         .attr("r", cellObj.dotRadius)
-    //         .attr("fill", "blue")
-    //         .on("mouseover", handleDotMouseOver)
-    //         .on("mouseout", handleDotMouseOut)
-    //         .on("mousedown", dotDrag);
-    //
-    //     canvas.append("circle")
-    //         .attr("class", cellObj.cellName)
-    //         .attr("id", "LowerRight_"+ cellObj.name)
-    //         .attr("group", "dot")
-    //         .attr("cx", cellObj.xLowerRight)
-    //         .attr("cy", cellObj.yLowerRight)
-    //         .attr("r", cellObj.dotRadius)
-    //         .attr("fill", "black")
-    //         .on("mouseover", handleDotMouseOver)
-    //         .on("mouseout", handleDotMouseOut)
-    //         .on("mousedown", dotDrag);
     //
 
     return cellObj;
 }
 
 function makeBoard(size){
+    var boardObj = {};
     var xOrigins = [];
     var yOrigins = [];
     var xStart = 5;
     var yStart = 5;
 
     var cellSize = (height-15)/size;
-    var boardObj = [];
+    var board = [];
 
     for (var i=0;i<size; i++){
         xOrigins.push(xStart);
@@ -168,24 +86,33 @@ function makeBoard(size){
 
     for (var x=0; x<xOrigins.length; x++) {
         for (var y=0; y<yOrigins.length; y++) {
-            var cellName="dot_"+x+"-"+y;
+            var dotName="dot_"+y+"-"+x;
 
-            boardObj.push(dotCell(xOrigins[x], yOrigins[y], cellSize, cellName, radius));
-            makeDot(xOrigins[x], yOrigins[y], cellName, radius);
+            // boardObj.push(dotCell(xOrigins[x], yOrigins[y], cellSize, cellName, radius));
+            makeDot(xOrigins[x], yOrigins[y], dotName, radius, y, x);
+        }
+    }
+    for (var x=0; x<xOrigins.length-1; x++) {
+        for (var y=0; y<yOrigins.length-1; y++) {
+            var cellName="dot_"+y+"-"+x;
+
+            board.push(dotCell(xOrigins[x], yOrigins[y], cellSize, cellName, radius));
+
         }
     }
     var boardArr = [];
-    while(boardObj.length) boardArr.push(boardObj.splice(0,12));
+    while(board.length) boardArr.push(board.splice(0,12));
+    boardObj.boardArr = boardArr;
+    boardObj.xOrigins = xOrigins;
+    boardObj.yOrigins = yOrigins;
 
-    return boardArr;
+    return boardObj;
 }
 
 
 board = makeBoard(12);
-console.log(board[0][1]);
-// tip = d3.tip().html(function(d) { return "dog"; });
+console.log(board.boardArr[0][1]);
 
-//Define and set up the tooltip
 
 function dotDrag(){
 
@@ -206,7 +133,6 @@ function dotDrag(){
         });
     }
     function mouseup() {
-        dot.classed("active", false);
         w.on("mousemove", null).on("mouseup", null);
         dot.transition()
             .duration(1000)
@@ -214,6 +140,15 @@ function dotDrag(){
                 cx: xOriginal,
                 cy: yOriginal
             });
+
+
+        var col = insertOrdered(board.xOrigins, d3.mouse(dot.node())[1]);
+        var row = insertOrdered(board.yOrigins, d3.mouse(dot.node())[0]);
+        var newDot = d3.select("circle#dot_"+col+"-"+row);
+        newDot.attr("fill", "blue");
+        var xNew = newDot.attr("cx");
+        var yNew = newDot.attr("cy");
+        drawLine(xOriginal, yOriginal, xNew, yNew);
     }
 }
 
@@ -250,8 +185,6 @@ function handleLineMouseOver(d, i) {  // Add interactivity
         stroke: "orange",
         "stroke-width": 4
     });
-    // var x = d3.select(this).attr("cx");
-    // var y = d3.select(this).attr("cy");
     var name = d3.select(this).attr("id");
     console.log(name);
 }
@@ -268,19 +201,34 @@ function handleDotMouseOut(d, i) {
 function handleLineMouseOut(d, i) {
     // Use D3 to select element, change color back to normal
     d3.select(this).attr({
-        stroke: "white",
+        stroke: "black",
         "stroke-width": 2
     });
 
 }
 
-function moveLookup(dotX, dotY){
-
-    var possibleX = [dotX, dotX+1, dotX, dotX-1];
-    var possibleY = [dotY+1, dotY, dotY-1, dotY];
-
-    if()
-
-
+function moveLookup(startDotX, startDotY, endDotX, endDotY){
+    // console.log(startDotX, startDotY, endDotX, endDotY);
+    if (startDotX === endDotX && startDotY+1 === endDotY){
+        return true;
+    }else if(startDotX+1 === endDotX && startDotY === endDotY){
+        return true;
+    }else if(startDotX === endDotX && startDotY === endDotY){
+        return true;
+    }else if(startDotX-1 === endDotX && startDotY){
+        return true;
+    }
 
 }
+
+function insertOrdered(array, elem) {
+    let _array = array;
+    let i = 0;
+    while ( i < array.length && array[i] < elem ) {i ++};
+    // _array.splice(i, 0, elem);
+    return i-1;
+}
+
+var testArr = [0, 3, 4, 5, 6, 9];
+
+console.log(insertOrdered(testArr, 4.4));
