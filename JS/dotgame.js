@@ -71,6 +71,8 @@ function makeBoard(size){
     var yOrigins = [];
     var xStart = 5;
     var yStart = 5;
+    var xDots = [];
+    var yDots = [];
 
     var cellSize = (height-15)/size;
     var board = [];
@@ -86,15 +88,17 @@ function makeBoard(size){
 
     for (var x=0; x<xOrigins.length; x++) {
         for (var y=0; y<yOrigins.length; y++) {
-            var dotName="dot_"+y+"-"+x;
+            var dotName="dot_"+xOrigins[x]+"-"+yOrigins[y];
 
             // boardObj.push(dotCell(xOrigins[x], yOrigins[y], cellSize, cellName, radius));
             makeDot(xOrigins[x], yOrigins[y], dotName, radius, y, x);
+            xDots.push(xOrigins[x]);
+            yDots.push(yOrigins[y])
         }
     }
     for (var x=0; x<xOrigins.length-1; x++) {
         for (var y=0; y<yOrigins.length-1; y++) {
-            var cellName="dot_"+y+"-"+x;
+            var cellName="dot_"+yOrigins[y]+"-"+xOrigins[x];
 
             board.push(dotCell(xOrigins[x], yOrigins[y], cellSize, cellName, radius));
 
@@ -105,14 +109,14 @@ function makeBoard(size){
     boardObj.boardArr = boardArr;
     boardObj.xOrigins = xOrigins;
     boardObj.yOrigins = yOrigins;
+    boardObj.xDots = xDots;
+    boardObj.yDots = yDots;
 
     return boardObj;
 }
 
 
-board = makeBoard(12);
-console.log(board.boardArr[0][1]);
-
+board = makeBoard(4);
 
 function dotDrag(){
 
@@ -141,14 +145,10 @@ function dotDrag(){
                 cy: yOriginal
             });
 
-
-        var col = insertOrdered(board.xOrigins, d3.mouse(dot.node())[1]);
-        var row = insertOrdered(board.yOrigins, d3.mouse(dot.node())[0]);
-        var newDot = d3.select("circle#dot_"+col+"-"+row);
-        newDot.attr("fill", "blue");
-        var xNew = newDot.attr("cx");
-        var yNew = newDot.attr("cy");
-        drawLine(xOriginal, yOriginal, xNew, yNew);
+        var dotIndex = mouseDistance(d3.mouse(dot.node())[1], d3.mouse(dot.node())[0], board.xDots, board.yDots);
+        //TODO: Track down where I flipped X and Y coords and fix it
+        console.log(board.xDots[dotIndex], board.yDots[dotIndex]);
+        drawLine(xOriginal, yOriginal, board.yDots[dotIndex], board.xDots[dotIndex]);
     }
 }
 
@@ -221,14 +221,29 @@ function moveLookup(startDotX, startDotY, endDotX, endDotY){
 
 }
 
-function insertOrdered(array, elem) {
-    let _array = array;
-    let i = 0;
-    while ( i < array.length && array[i] < elem ) {i ++};
-    // _array.splice(i, 0, elem);
-    return i-1;
+function euclideanDistance(x1,y1,x2,y2){
+
+    var distance = Math.sqrt(Math.pow((x1-x2), 2)+Math.pow((y1-y2), 2));
+    return distance;
 }
 
-var testArr = [0, 3, 4, 5, 6, 9];
+function mouseDistance(mouseX, mouseY, xOrigins, yOrigins){
+    //make an array to hold distance values
+    var distanceArray = [];
 
-console.log(insertOrdered(testArr, 4.4));
+    for (var i=0; i<xOrigins.length; i++) {
+
+        var x = xOrigins[i];
+        var y = yOrigins[i];
+
+        var distance = euclideanDistance(mouseX, mouseY, x, y);
+
+        distanceArray.push(distance);
+
+    }
+    var shortestDistance = Math.min.apply(null, distanceArray);
+    var indexShortest = distanceArray.indexOf(shortestDistance);
+
+    return indexShortest;
+}
+
